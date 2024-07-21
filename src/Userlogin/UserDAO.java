@@ -7,7 +7,7 @@ public class UserDAO {
     public static String DB_USER = "root";
     public static String DB_PASSWORD = "";
 
-    public void loginUsername(String username, String password) throws SQLException {
+    public void loginUsername(Users user) throws SQLException {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -18,8 +18,8 @@ public class UserDAO {
             String sql = "SELECT * FROM users WHERE username=? AND password=?";
             ps = conn.prepareStatement(sql);
 
-            ps.setString(1, username);
-            ps.setString(2, password);
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getPassword());
 
             rs = ps.executeQuery();
 

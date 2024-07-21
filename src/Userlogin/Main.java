@@ -13,9 +13,10 @@ public class Main {
         String username = sc.nextLine();
         System.out.println("Enter password: ");
         String password = sc.nextLine();
+        Users user = new Users(username, password);
 
         try {
-            dao.loginUsername(username, password);
+            dao.loginUsername(user);
         } catch (SQLException e) {
             e.printStackTrace();
         }
