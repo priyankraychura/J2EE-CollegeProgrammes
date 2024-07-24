@@ -18,7 +18,8 @@ public class Main {
         ItemDAO dao = new ItemDAO();
         
         try {
-            dao.insertItem(item);
+//            dao.insertItem(item);
+            dao.showItems();
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }

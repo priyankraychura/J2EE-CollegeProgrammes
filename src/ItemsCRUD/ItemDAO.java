@@ -47,6 +47,30 @@ public class ItemDAO {
         
     }
     
-    
+    public void showItems() throws SQLException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+
+        String SQL = "SELECT * FROM items";
+        stmt = conn.prepareStatement(SQL);
+        rs = stmt.executeQuery();
+
+        while(rs.next()){
+            String itemName = rs.getString("itemName");
+            String itemRate = rs.getString("itemRate");
+            System.out.println(itemName + " : " + itemRate);
+        }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            rs.close();
+            stmt.close();
+            conn.close();
+        }
+    }
     
 }
