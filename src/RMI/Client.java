@@ -1,5 +1,7 @@
 package RMI;
 
+import java.rmi.NotBoundException;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -9,9 +11,12 @@ public class Client {
         try {
             Registry registry = LocateRegistry.getRegistry(1099);
 
+            RemoteInterface stub = (RemoteInterface) registry.lookup("RemoteObject");
 
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
+            System.out.println(stub.sayHello());
+            System.out.println(stub.sayBye());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
